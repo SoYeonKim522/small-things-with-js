@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Basic Vanilla Js</title>
+        <link rel="stylesheet" href="index.css"/>
+        <link rel="stylesheet" href="clock.css"/>
+        <meta charset="utf-8"/> <!--todolist delete 버튼 이모지 오류때문에 추가 -->
+    </head>
+
+    <body>
+        <h1 id="title" class="clicked default"> What a Day!</h1>   
+
+        <script src="index.js"></script>
+        
+        <div class="js-clock">
+            <h1>00:00:00</h1> 
+        </div>
+
+        <form class="js-form form">  <!--js-form은 js파일용, form 은 css 파일용-->
+            <input type="text" placeholder="what is your name?"/>
+        </form>
+        <h4 class="js-greetings greetings"></h4>
+        
+        <form class="js-toDoForm">
+        <input class="inputbox" type="text" placeholder="Write a to-do"/>
+        </form>
+        <ul class="js-toDoList">
+        </ul>
+
+
+        <script src='clock.js'></script>
+        <script src="greeting.js"></script>
+        <script src="todo_edit.js"></script>
+        <script src="background.js"></script>
+
+
+    </body>
+</html>
+
