@@ -1,0 +1,107 @@
+:root {
+    /* 지정 color를 변수로 정의해놓으면 유지보수가 훨씬 용이 */
+    --color-black: #3f454d;
+    --color-white: #ffffff;
+    --color-blue: #3b88c3;
+    --color-yellow: #fbbe28;
+    --color-pink: #fd7f84;
+    --color-light-grey: #dfdfdf;
+
+    /*size*/
+    --base-space: 8px;
+    --size-border : 4px;
+    --size-button: 60px;
+    --size-thumbnail : 50px;
+    --button-font-size: 18px;
+
+
+    /*annimation*/   /*일관성있는 애니메이션 위해서*/
+    --animation-duration: 300ms;    
+  }
+  
+  /** {
+    box-sizing: border-box;
+  }*/
+
+body{
+    background-color: var(--color-black);
+    margin-top: 100px;
+    display: flex;            /*float 보다 더 좋은 기능*/
+    flex-direction: column;   /*기본적으로 가로로 배치되어 나오기 때문에 방향 세로로*/
+    justify-content: center;  /*justify-content:가로방향 정렬*/
+    align-items: center;      /*align-items:세로방향 정렬*/ 
+}
+
+.logo{
+    cursor: pointer;
+    transition: transform var(--animation-duration) ease;
+    margin-bottom: 30px;
+}
+
+.btn{
+    background-color: transparent;
+    border: none;
+    outline: none;   /*클릭했을 때 아웃라인 안생김*/
+    cursor: pointer;
+    transition: transform var(--animation-duration) ease;
+    margin-right: var(--base-space);
+}
+
+.logo:hover,
+.btn:hover {
+    transform: scale(1.1);
+}
+.buttons{
+    display:flex;
+    align-items: center;
+}
+
+.imgBtn{
+    width:var(--size-button);       /*위에서 변수 추가해서 변수로 적용*/
+    height: var(--size-button);
+}
+.colorBtn{
+    font-size: var(--button-font-size);
+    padding: calc((var(--base-space))*1.5);   /*calc() 안에서는 계산 가능*/
+    border-radius: var(--size-border);
+}
+.blue{
+    background-color: var(--color-blue);
+}
+.yellow{
+    background-color: var(--color-yellow);
+}
+.pink{
+    background-color: var(--color-pink);
+}
+
+.items {
+    width: 350px;
+    height: 500px;
+    list-style: none;
+    padding-left: 0;
+    overflow-y: scroll;   /*items 범위 안에서만 스크롤 되도록 */
+    
+}
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+li{
+    background-color: var(--color-white);
+    display: flex;
+    align-items: center;
+    padding : var(--base-space);
+    margin-bottom: var(--base-space);
+    border-radius: var(--size-border);
+}
+.item_thumbnail{
+    width: var(--size-thumbnail);
+    height:var(--size-thumbnail);
+    margin-left: var(--base-space);
+    margin-right: var(--base-space);
+}
+.descriptoin{
+    font-size: 14px;
+    line-height: 14px;
+}

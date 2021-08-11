@@ -1,0 +1,81 @@
+{
+    "items": [  
+        {
+            "type": "tshirt", 
+            "gender": "women", 
+            "size":"large", 
+            "color":"pink",
+            "image":"../imgs/pink_t.png"
+        }, 
+        {
+            "type": "pants", 
+            "gender": "men", 
+            "size":"small", 
+            "color":"blue",
+            "image":"../imgs/blue_p.png"
+        }, 
+        {
+            "type": "pants", 
+            "gender": "men", 
+            "size":"large", 
+            "color":"yellow",
+            "image":"../imgs/yellow_p.png"
+        }, 
+        {
+            "type": "skirt", 
+            "gender": "men", 
+            "size":"large", 
+            "color":"/yellow",
+            "image":"../imgs//yellow_s.png"
+        }, 
+        {
+            "type": "skirt", 
+            "gender": "women", 
+            "size":"small", 
+            "color":"blue",
+            "image":"../imgs/blue_s.png"
+        }, 
+        {
+            "type": "tshirt", 
+            "gender": "men", 
+            "size":"large", 
+            "color":"blue",
+            "image":"../imgs/blue_t.png"
+        }, 
+        {
+            "type": "tshirt", 
+            "gender": "women", 
+            "size":"small", 
+            "color":"yellow",
+            "image":"../imgs/yellow_t.png"
+        }, 
+        {
+            "type": "pants", 
+            "gender": "women", 
+            "size":"large", 
+            "color":"pink",
+            "image":"../imgs/pink_p.png"
+        }, 
+        {
+            "type": "tshirt", 
+            "gender": "men", 
+            "size":"small", 
+            "color":"pink",
+            "image":"../imgs/pink_t.png"
+        }, 
+        {
+            "type": "pants", 
+            "gender": "men", 
+            "size":"large", 
+            "color":"blue",
+            "image":"../imgs/blue_p.png"
+        }, 
+        {
+            "type": "pants", 
+            "gender": "men", 
+            "size":"large", 
+            "color":"yellow",
+            "image":"../imgs/yellow_p.png"
+        }
+    ]
+}
