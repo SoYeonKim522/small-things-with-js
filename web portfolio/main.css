@@ -1,0 +1,617 @@
+:root{
+    --containerTitle-font
+    /*color*/
+    :--fontcolor-basic: #eee
+    --image-backgroundcolor
+    /*margin*/
+    --margin-right: 5rem;
+    
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+html{
+    font-size: 10px;  /**/
+    font-family: 'Roboto', sans-serif;  /*sans serif는 예비용*/
+    color: var(--fontcolor-basic);
+}
+body{
+    background: url("/image/beehouse.jpg") no-repeat;
+    background-size: cover;
+    width: 100%;    /*100vw로 하면 가로스크롤 조금 생김*/
+    height: 100%;   /*부모 요소에 가득차게 영역 설정*/
+}
+ul{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color: var(--fontcolor-basic);
+}
+p{
+    font-size: 1.8rem;
+    font-weight: 300;
+}
+img{
+    width: 100%;
+}
+
+/*All container*/
+.container{
+    width: 90%;
+    max-width: 120rem;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+/*All Section-heading*/
+.section{
+    padding: 6rem 0rem;
+}
+.section-heading{
+    margin-top: 20rem;
+    text-align: center;
+    margin-bottom: 10rem;
+}
+.section-heading h1{
+    font-size: 3.5rem;
+    color:  rgba(255, 255, 255, 0.3); /*color, opacity 따로 써줘도 됨*/
+    text-transform: uppercase;
+    font-weight: 540;
+    position: relative;
+    margin-bottom: 1rem;
+}
+.section-heading h1::before,   /*요소 앞과 뒤에 추가할 데코 css공통속성*/ 
+.section-heading h1::after{     /*요소 두개가 필요하니까 그냥 before, after로 해준 듯*/
+    content:'';        /*따로 추가할 문자열은 없음*/
+    position: absolute;
+    bottom: -0.5rem;    /*선 위치 아래로 이동*/
+    left: 50%;         /*right  50%랑 다르게 나타나지만, 암튼 가운데로 만들어주는 애*/
+    transform: translateX(-50%); /*x축을 따라 지정된 거리만큼 이동*/
+    background-color:  rgba(255, 255, 255, 0.75);  /*color:white, opacity:0.75*/ /*위에서 h1색 지정 안해주면 이거 overwriting 안됨*/
+}
+.section-heading h1::before{      /*h1, h6 사이에 선 긋기*/
+    width: 10rem; 
+    height: 3px;
+    border-radius: .8rem;
+}
+.section-heading h1::after{      /*h1, h6 사이에 원 그리기*/
+    width: 1.5rem; 
+    height: 1.5rem;
+    border-radius: 100%; /*원형으로*/
+    bottom: -1.1rem;  /*원 위치 아래로 이동*/
+}
+.section-heading h6{
+    font-size: 1.6rem;
+    font-weight: 300;
+}
+
+
+/*Header*/
+header{
+    width: 100%;   /**/
+    height: 100vh;  /*vh!*/
+}
+.top-nav{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top : -100vh ;   /*to hide it*/
+    z-index: 50;
+    background-color:#0a1117;
+    border-bottom-right-radius: 100%;
+    border-bottom-left-radius: 100%;
+    transition: all 650ms cubic-bezier(1,0,0,1);
+}
+.top-nav .nav-list{
+    width:100%;
+    height: 100%;  /*이걸 해줘서그런지 margin 0 auto 안해줘도 정가운데로 옴*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
+}
+.top-nav .nav-list li{
+    margin: 0.2rem;
+}
+.nav-link{
+    font-family: 'Lobster', cursive;
+    font-size: 5rem;
+    padding:0.5rem; /*아래에서 글자색 그라데이션 효과줄때 글자 상하단이 잘리지 않기 위한 것*/
+}
+.nav-link:hover,
+.nav-link:focus{
+    background: linear-gradient(to top, rgb(172, 67, 84), rgb(96, 201, 243));
+    -webkit-background-clip:text;  /*배경이 글자를 차지하게 해라. 이게 없으면 그냥 네모상자에 그라데이션이 적용*/
+    color: transparent;  /*글자의 원래 색은 투명하게*/
+}
+
+.top-nav.open{  /*나중에 jquery 로 추가할 예정*/
+    top:0;  /*show*/
+    border-radius: initial;
+}
+.menu-toggler{
+    position: absolute;
+    top: 5rem;
+    right: 5rem;
+    width: 5rem;
+    height: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    z-index: 100;
+    transition: transform 650ms ease-out;
+}
+.menu-toggler.open{
+    transform: rotate(-45deg);
+}
+.bar{
+    background: linear-gradient(to right, #ffcc68, #f88808);
+    width: 100%;  /**/
+    height: 4px;
+    border-radius: .8rem;
+}
+.bar.half{
+    width: 50%;
+}
+.bar.start{
+    transform-origin: right;
+    transition: transform 650ms cubic-bezier(0.54, -0.81, 0.57, 0.57);
+}
+.open .bar.start{ /*메뉴가 열렸을 때*/
+    transform: rotate(-450deg) translateX(.8rem); /*check*/
+}
+.bar.end{
+    align-self: flex-end;
+    transform-origin: left;
+    transition: transform 650ms cubic-bezier(0.54, -0.81, 0.57, 0.57);
+}
+.open .bar.end{ /*메뉴가 열렸을 때*/
+    transform: rotate(-450deg) translateX(-.8rem); /*check*/
+}
+
+.landing-text{
+    position: absolute; /*이렇게 설정한 상태에서*/
+    top: 50%;
+    left: 50%; /*item이 컨테이너 안에 상대적으로 위치하게 만듬-> 상위컨테이너의 중심지점 = 이 상자의 왼쪽위 지점*/
+    transform: translate(-50%, -50%); /*위치좌표가 item의 너비/높이의 50%만큼 당겨지게 -> 상위컨테이너의 중심지점=item의 중심*/
+    width: 100%;
+    z-index: 1;
+    text-align: center;
+}
+.landing-text h1{
+    font-size: 20rem;
+    font-family: 'Lobster', cursive;
+    background: linear-gradient(to top, #e6c298 , #ffcc68 70% );
+    -webkit-background-clip:text;  /*배경이 글자를 차지하게 해라. 이게 없으면 그냥 네모상자에 그라데이션이 적용*/
+    color: transparent;  
+    padding: 0.5rem;
+    user-select: none;  /*드래그 못하게*/
+}
+.landing-text h6{
+    font-size: 2rem;
+    font-weight: 300;
+}
+
+
+/*About*/
+.about .container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.about-heading{
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 0; /*글자가 서로 완전 겹치게*/
+    margin-bottom: 6rem;
+}
+.about-heading h1{
+    font-size: 10rem;
+    opacity: 0.3;
+}
+.about-heading h6{
+    font-size: 2rem;
+    font-weight: 300;
+}
+.profile-img{
+    flex: 1;  /*반응형으로 변신 /*==flex-grow:1, flex-shrink: 1, flex-basis:0;*/
+    margin-right: 5rem;
+}
+.about-details{
+    flex:1; 
+}
+.social-media{
+    margin-top: 5rem;
+}
+.social-media .nav-list{
+    display: flex;
+    justify-content: space-evenly;
+}
+.social-media i {  /*social media말고 바로 상위박스에 flex줘야함*/
+    font-size: 5rem;
+    transition: color  350ms;
+}
+.fa-facebook-square:hover{
+    color: #4267b2;
+}
+.fa-instagram-square:hover{
+    background:linear-gradient(45deg, #f1b06c 0%,#cf4580 60%, #9d529d 100% );
+    -webkit-background-clip:text;  
+    color: transparent; 
+}
+.fa-whatsapp-square:hover{
+    color: #48c857;
+}
+
+
+/*Services*/
+.my-skils{ 
+    margin-top: 10rem;
+    display: grid;      /*flex-wrap:wrap 으로도 되는 것 같긴 함*/
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    grid-gap: 2.5rem;
+    text-align: center;
+}
+.myskills .skill{ /*아이템 각각 박스*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+.skill h1{
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 2em -2px 2em 0;
+}
+.skill .icon-container{
+    width: 10rem;
+    height: 10rem;
+    border: 3px solid pink;
+    background-color: #ffcc68;
+    margin: auto;        /*정가운데로. 영상에서는 안했음*/
+    margin-bottom: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotate(45deg);
+}
+.skill .icon-container i{
+    font-size: 5rem;
+    transform: rotate(-45deg);
+    margin: auto; /*정가운데로*/
+    color: rgb(1, 1, 27);
+}
+
+/*Portfolio*/
+.portfolio-item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5rem;
+}
+.portfolio-img{  
+    flex:1;
+}
+.porfolilo-descripton{    /*img, description 반반*/
+    flex:1;
+}
+.portfolio-img.first{  /*첫번째 사진만!*/ /*first-of-type 이용해서 해보려 했는데 자꾸 세번째것도 같이 설정됐음..*/
+    padding: 4rem;              /*위에서 이미 flex1을 해놔서 width가 안먹힘*/
+}
+.porfolilo-descripton:nth-of-type(2n+1){  /*2번째 텍스트 상자*/
+    margin-right:  var(--margin-right);
+}
+.porfolilo-descripton:nth-of-type(2n){  /*1,3번째 텍스트 상자*/
+    margin-left:  var(--margin-right); 
+}
+
+.porfolilo-descripton h1{
+    font-size: 3rem;
+    font-weight: 300;
+    margin: 1rem 0;
+}
+.porfolilo-descripton h6{
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    font-weight: 300;
+    opacity: 0.3;  
+}
+.porfolilo-descripton .cta{
+    display: inline-block;
+    margin-top: 2.5rem;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: #3883ff;
+    transition: color 350ms;
+}
+.porfolilo-descripton  .cta:hover{
+    color: #2f67cd;
+}
+
+
+/*Work experience*/  /*영상 1:18:10*/
+.timeline{
+    margin:  0 auto;
+}
+.timeline ul{
+    border-left: 5px solid #d47f1d;
+    border-radius: .8rem;
+    background-color: rgba(0,0,0 0.05);
+    margin: 0 auto;
+    position: relative;      /*왜?*/
+    padding: 5rem; 
+    text-align: left;
+    width: 70%;
+    left: 5rem; /*날짜까지 해서 중앙쪽으로 오게 하려고 오른쪽으로 당김*/
+}
+.timeline h1{
+    font-size: 2rem;
+    text-transform: uppercase;
+    font-weight: 300;
+    margin-bottom: 1rem;
+    opacity: 0.3;
+}
+.timeline .date{
+    border-bottom: 1px solid rgba(255, 255, 255, .1);
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    position: relative;        /*왜? 아래 date:before, after에서 absolute 줘야해서?*/
+}
+.timeline .date:last-of-type{  /*같은 유형의 맨 마지막 date요소*/
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border: none;
+}
+.timeline .date::before,
+.timeline .date::after{
+    position:absolute;
+    display: block;
+    top: 50%;
+    transform: translateY(-50%);    
+}
+.timeline .date::before{
+    content: attr(data-date);       /*이렇게 속성을 가지고 올 수도 있음!*/
+    left: -18rem;
+    font-size: 1.2rem;
+    min-width: 11rem;        /*넓이 넓게*/
+    text-align: right;
+}
+.timeline .date::after{
+    content:'';
+    width: 1rem;
+    height: 1rem;
+    border-radius: 100%;
+    background-color: rgb(153, 17, 46);
+    box-shadow: 0 0 0 4px salmon;  /*border로 해도됨*//*box-shadow: (수평그림자위치. 수직그림자위치. 그림자의 흐림정도. 그림자spread정도. 색깔)*/
+    left: -5.8rem;
+}
+
+/*contact*/
+select,
+input,
+textarea{
+    outline: none;
+    border: none;
+    width: 100%;
+    padding: .8rem;
+    margin-bottom: 5px;
+}
+.contact-forms{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  /*위에서 column으로 설정했기 때문에 여기서 align-items 대신 justify*/
+    width: 70%;
+    margin: 0 auto 10rem auto;
+}
+.contact-forms label{      /*label앞에 점 없음!!*/
+    font-size:1.4rem;  
+}
+.contact-forms input[type="submit"]{
+    width: 7.5rem;      /*%로 주면 화면 작아졌을 때 글씨 잘림*/
+    background-color: #d47f1d;
+    color: white;
+    border-radius: .8rem;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: background-color 350ms;
+}
+input[type="submit"]:hover{
+    background-color: salmon;
+    color: black;
+}
+
+/*Footer*/
+.copyright{
+    width: 100%;
+    text-align: center;
+    background-color: #060503;
+    padding:2rem;    /*높이 주고 line-height 똑같이 맞춰주는 대신 패딩 이용*/
+    position: relative;  /*이게 있어야 scroll up 버튼이 맨 아래에 위치!!!!!!!!*/
+
+}
+.copyright .up {
+    position: absolute;
+    top: -4rem;  /*0이면 copyright bordertop에 딱 붙어 있는 상태 */
+    right: 2rem;
+    font-size: 3em;
+    border-radius: 100%;
+    cursor: pointer;
+    margin: auto;
+    display: flex;
+    animation: pulse 1.7s infinite;
+    /*=animation name: pulse; animation-duration: 2s; animation-iteration-count: infinite*/
+}
+.copyright p{
+    font-size: 1.2rem;
+}
+/*Animation*/
+@keyframes pulse {         /*@keyframes 라고 쓰고 에니메이션 이름붙이기*/
+    0%{            /*에니메이션의 시작과 끝 시점*/
+      box-shadow: 0 0 0 0 rgba(212, 127, 29, 0.99);
+    }
+    70% {          
+      box-shadow: 0 0 0 1.5rem rgba(212, 127, 29, 0); /*spread만 1.5rem*/
+    }
+    100% {          
+        box-shadow: 0 0 0 0 rgba(212, 127, 29, 0);
+      }
+  }
+
+  /*Media Queries*/
+  @media screen and (max-width: 768px){  /*for tablets*/
+      body{
+        background: url("/image/beehouse.jpg") no-repeat fixed;
+        background-size: cover;
+      }
+      p{
+          font-size: 1.7rem;
+      }
+      .landing-text h1{
+        font-size: 15rem;
+      }
+      .landing-text h6{
+          font-size: 1.8rem;
+      }
+      .nav-list{
+          flex-direction: column;
+      }
+      li{
+          margin: 2rem 0
+      }
+      .nav-link{
+          font-size: 4.5rem;
+      }
+      /*about*/
+      .profile-img img{
+          
+      }
+      .about-heading h1{
+          font-size: 7.5rem;
+      }
+      .about-details .nav-list{
+          flex-direction: initial;
+      }
+      .about-details li{
+          margin: 0 2rem;
+      }
+      .about-details .nav-list i{
+          font-size: 3.5rem;
+      }
+      /*in common*/
+      .section-heading{
+        margin-top: 15rem;  /*section간 간격*/
+        margin-bottom: 8rem;
+    }
+      .section-heading h1{
+        font-size: 3.1rem;
+        font-weight: 560;
+        padding-bottom: 0.5rem;
+        margin-top: 0;
+      }
+      .section-heading h6{
+            font-size: 1.5rem;
+      }
+      /*services*/
+      .skill{
+          margin-bottom: 5rem;
+      }
+      .skill .icon-container{
+         width: 7rem;
+         height: 7rem;
+      }
+      .skill .icon-container i{
+        font-size: 4rem;
+      }
+      .skill h1{
+          margin: 1rem;
+      }
+
+      /*portfolio*/
+      .portfolio-item{
+        margin-bottom: 4rem;
+    }
+      .porfolilo-descripton h1{
+          font-size: 2.5rem;
+          font-weight: 400;
+      }
+      .portfolio-img.first{  
+        padding: 2rem;              
+    }   
+  }
+
+  @media screen and (max-width:600px ){ /*for mobile*/
+    /*in common*/  
+      p{
+          font-size: 1.5rem;
+      }
+      .landing-text h1{
+        font-size: 12rem;
+      }
+      .landing-text h6{
+          font-size: 1.7rem;
+      }
+      li{
+          margin: 2rem 0
+      }
+      .nav-link{
+          font-size: 4.5rem;
+      }
+      .section-heading{
+        margin-top: 13rem;  /*section간 간격*/
+        margin-bottom: 7rem;
+      }
+      .section-heading h1{
+        font-size: 3rem;
+        font-weight: 400;
+        padding-bottom: 0.4rem;
+      }
+      .section-heading h6{
+        font-size: 1.4rem;
+      }
+      .menu-toggler{
+        top: 4rem;
+        right: 3rem;
+        width: 4rem;
+        height: 3rem;
+      }
+      .about .container{
+        flex-direction: column;
+        padding: 2rem;
+      }
+      .profile-img{
+        margin: 0 0 7rem 0;
+     
+      }
+      .about-details p{
+          text-align: center;
+      }
+
+    /*portfolio*/
+      .portfolio-item{
+        flex-direction: column;
+        padding: 2rem;
+      }
+      .portfolio-img{
+          margin-bottom: 3rem;
+          order: 1;  /*두번째것만 해당된다고 그것만 따로 생각할 필요 없음!*/
+      }
+      .porfolilo-descripton{
+          margin: 0;
+          order: 2;
+      }
+
+      .contact-forms{
+          width: 100%;
+      }
+      .copyright .up {
+        right: 1rem;
+  }
