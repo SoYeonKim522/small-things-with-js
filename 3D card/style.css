@@ -1,0 +1,105 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Poppins', sans-serif;
+	min-height: 100vh; /*높이를 뷰포트 높이로 맞추고, 더 커지면 커지게*/
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	perspective: 1000px; /**/
+}
+.container {
+	width: 550px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.card {
+	transform-style: preserve-3d; /*-> js에서 popout 가능하게 됨*/
+	min-height: 80vh;
+	width: 90%;
+	box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2), 0 0 50px rgba(0, 0, 0, 0.2); /*2중으로*/
+	border-radius: 20px;
+	padding: 0rem 5rem;
+}
+.sneaker {
+	min-height: 35vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.sneaker img {
+	width: 20rem;
+	transition: all 0.75s ease-in-out;
+}
+.sneaker .circle {
+	height: 15rem;
+	width: 15rem;
+	background: linear-gradient(
+		to right,
+		rgba(245, 70, 66, 0.75),
+		rgba(8, 83, 156, 0.75)
+	);
+	border-radius: 50%;
+	z-index: -1; /*card에는 따로 줄 필요X*/
+	position: absolute; /*left ~ 필요X 이것만 쓰면 됨*/
+}
+.info h1 {
+	font-size: 3rem;
+	transition: all 0.75s ease-in-out; /*pop in&out에 대한 효과*/
+}
+.info h3 {
+	font-size: 1.3rem;
+	padding: 2rem 0rem;
+	color: #585858;
+	font-weight: 500;
+}
+.sizes {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.sizes button {
+	padding: 0.5rem 1.8rem;
+	background: none;
+	border: none;
+	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+	border-radius: 20px;
+	cursor: pointer;
+	color: #585858;
+	font-weight: bold;
+}
+.sizes button:focus {
+	outline: none;
+}
+.sizes button.active {
+	background-color: #585858;
+	color: white;
+}
+.purchase {
+	display: flex;
+	justify-content: center;
+	padding: 4rem 0rem;
+}
+.purchase button {
+	padding: 1rem 0rem; /*가로축은 0으로 해도 됨. width 가 100%니까*/
+	width: 100%;
+	border: none;
+	background: #f54642;
+	border-radius: 20px;
+	color: white;
+	cursor: pointer;
+	font-weight: bold;
+	transition: all 0.75s ease;
+}
+.purchase button:focus {
+	outline: none;
+}
+.emp {
+	transition: all 0.7s ease-in-out;
+	color: rgba(8, 83, 156, 0.75);
+}
